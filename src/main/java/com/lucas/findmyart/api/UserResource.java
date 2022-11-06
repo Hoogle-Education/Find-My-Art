@@ -1,9 +1,9 @@
-package com.lucas.findmyart.model.user.api;
+package com.lucas.findmyart.api;
 
+import com.lucas.findmyart.api.dto.UserDto;
+import com.lucas.findmyart.api.form.UserForm;
 import com.lucas.findmyart.config.exception.APIException;
 import com.lucas.findmyart.model.user.User;
-import com.lucas.findmyart.model.user.api.dto.UserDto;
-import com.lucas.findmyart.model.user.api.form.UserForm;
 import com.lucas.findmyart.service.UserService;
 import com.lucas.findmyart.service.exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
@@ -22,6 +22,7 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAll() {
+
         List<UserDto> users = userService
                 .getAll()
                 .stream()
