@@ -20,9 +20,4 @@ public class Tag {
 
     @NonNull private String tag;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags",
-        cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Product> products = new HashSet<>();
-
 }

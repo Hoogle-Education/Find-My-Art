@@ -3,8 +3,6 @@ package com.lucas.findmyart.model.user;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lucas.findmyart.model.order.Order;
-import com.lucas.findmyart.model.order.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,8 +30,5 @@ public class User {
   @JoinColumn(name = "authority_id")
   private Authority authority;
 
-  @JsonIgnore
-  @OneToMany(mappedBy = "client")
-  private List<Order> orders = new ArrayList<>();
 
 }

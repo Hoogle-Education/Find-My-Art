@@ -21,9 +21,5 @@ public class Payment {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime moment;
 
-    @JsonIgnore
-    @OneToOne
-    @MapsId
-    private Order order;
 
 }
