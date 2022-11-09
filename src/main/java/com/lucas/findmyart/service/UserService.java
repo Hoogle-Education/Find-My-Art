@@ -8,6 +8,8 @@ import com.lucas.findmyart.model.enums.Role;
 import com.lucas.findmyart.model.user.Authority;
 import com.lucas.findmyart.repository.AuthorityRepository;
 import com.lucas.findmyart.api.form.UserForm;
+import com.lucas.findmyart.service.exceptions.RegisterException;
+import com.lucas.findmyart.service.exceptions.RoleMissmatchException;
 import com.lucas.findmyart.service.exceptions.UserAlreadyRegisteredException;
 import com.lucas.findmyart.service.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Service;
@@ -35,20 +37,15 @@ public class UserService {
     switch (userForm.getRole().toUpperCase()){
       case "MUSICIAN" -> role = Role.MUSICIAN;
       case "PUB" -> role = Role.PUB;
-      default -> role = Role.LISTENER;
+      default -> throw new RoleMissmatchException(userForm.getRole());
     }
 
     Optional<Authority> authority = authorityRepository.findByRole(role);
+    Authority newAuthorityRegistered = null;
 
-    if(authority.isEmpty()) {
-      Authority authorityEntity = new Authority();
-      authorityEntity.setRole(role);
-      authorityRepository.save(authorityEntity);
-      authority = authorityRepository.findByRole(role);
-    }
+    if(authority.isEmpty()) newAuthorityRegistered = registerAuthority(role);
 
-    user.setAuthority(authority.get());
-
+    user.setAuthority(authority.orElse(newAuthorityRegistered));
     return user;
   }
 
@@ -69,7 +66,8 @@ public class UserService {
   }
 
   public User getById(Long id) throws UserNotFoundException {
-    return userRepository.findById(id)
+    return userRepository
+            .findById(id)
             .orElseThrow(() -> new UserNotFoundException("user not found by this id!"));
   }
 
@@ -96,8 +94,14 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  private Authority registerAuthority(Role role) {
-    // TODO make register repository process
+  private Authority registerAuthority(Role role) throws RegisterException {
+    Authority aux = new Authority();
+    aux.setRole(role);
+    authorityRepository.save(aux);
+
+    return authorityRepository
+            .findByRole(role)
+            .orElseThrow(() -> new RegisterException("Authority register error"));
   }
 
 }
