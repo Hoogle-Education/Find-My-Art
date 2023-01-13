@@ -10,25 +10,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Itim&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background: white;
-            --secondary-color: #CAF0F8;
-            --primary-color: #03045E;
+            --soft-black-1 : #1F1F1F;
+            --soft-black-2 : #1b1c1e;
+            --soft-black-3 : #303030;
+            --soft-white: #e8e8e8;
+            --primary: #5863F8;
+            --soft-primary: #657ED4;
         }
 
         body{
-            background-color: var(--background);
+            background-color: var(--soft-black-3);
             font-family: 'Inter', sans-serif;
         }
 
         .logo-container {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
+            background-color: var(--soft-black-1);
         }
-
-        .logo {
-            background-color: var(--secondary-color);
+        
+        .favicon {
+            color: var(--primary);
+            background-color: var(--soft-black-1);
             font-family: 'Itim', cursive;
             font-size: 2.2em;
+        }
+
+        .text-panel {
+            background-color: var(--soft-white);
+        }
+
+        .smooth-shadow {
+            box-shadow:
+            /* offset-x | offset-y | blur-radius | spread-radius | color */
+            0px 8px 10px 1px hsla(0,0%,0%,0.18), 
+            0px 3px 14px 2px hsla(0,0%,0%,0.14), 
+            0px 5px 5px -3px hsla(0,0%,0%,0.14);
+        }
+
+        .smooth-text-shadow {
+            text-shadow: 
+            2px 8px 10px 2px hsla(0.1,0%,0%,0.14), 
+            3px 4px 14px 3px hsla(0.05,0%,0%,0.12), 
+            -3px 5px 5px -3px hsla(0.5,0%,0%,0.12);
+        }
+
+        .card-btn{
+            background-color: var(--primary);
+            color: var(--soft-white);
+        }
+
+        .account-option {
+            color: var(--soft-white);
         }
 
         a.page-logo,
@@ -37,18 +68,34 @@
             text-decoration: none;
             color: inherit;
         }
+
+        .form-group label{
+            color: var(--soft-white);
+            max-width: 40%;
+        }
     </style>
 </head>
 
 <!-- logo -->
 <div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
-    <span class="logo">
+    <span class="logo favicon">
         <a class="page-logo" th:href="@{/home}"> FindMyArt </a>
     </span>
+
+    <div class="btn-group mt-2" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a href="/login" class="account-option dropdown-item">Login</a>
+            <a href="/register" class="account-option dropdown-item">Register</a>
+            <a href="/logout" class="account-option dropdown-item">Logout</a>
+        </div>
+    </div>
 </div>
 
 <!-- panel -->
-<div th:fragment="title(value)" class="jumbotron mb-3 mt-2">
+<div th:fragment="title(value)" class="text-panel jumbotron mb-3 mt-2">
     <h1 class="display-4" th:text="${value}"> </h1>
 </div>
 

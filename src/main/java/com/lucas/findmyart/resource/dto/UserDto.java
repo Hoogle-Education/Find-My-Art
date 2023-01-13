@@ -1,4 +1,4 @@
-package com.lucas.findmyart.api.dto;
+package com.lucas.findmyart.resource.dto;
 
 import com.lucas.findmyart.model.user.User;
 import com.lucas.findmyart.util.GravatarTokenFactory;

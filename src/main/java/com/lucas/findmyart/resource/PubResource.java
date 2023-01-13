@@ -1,4 +1,4 @@
-package com.lucas.findmyart.api;
+package com.lucas.findmyart.resource;
 
 import com.lucas.findmyart.service.PubService;
 import lombok.AllArgsConstructor;

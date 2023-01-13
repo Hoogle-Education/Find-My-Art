@@ -5,7 +5,6 @@ import com.lucas.findmyart.model.user.User;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pubs")
 @DiscriminatorValue("Pub")
 public class Pub extends User {
 

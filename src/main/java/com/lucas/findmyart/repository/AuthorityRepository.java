@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+@Repository // ponte para a base de dados e dá recursos java para manipularmos a base
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
     Optional<Authority> findByRole(Role role);

@@ -1,4 +1,4 @@
-package com.lucas.findmyart.api.form;
+package com.lucas.findmyart.resource.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
