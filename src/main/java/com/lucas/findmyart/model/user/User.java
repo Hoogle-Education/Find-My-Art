@@ -31,7 +31,7 @@ public class User {
   private String password;
   private Boolean enabled;
   @OneToOne
-  @JoinColumn(name = "authority_id")
+  @JoinColumn(name = "authority")
   private Authority authority;
 
 }

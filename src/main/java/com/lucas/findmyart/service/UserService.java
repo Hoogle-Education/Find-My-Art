@@ -88,7 +88,8 @@ public class UserService {
 
 	public List<User> getUsersByAuthority(String role) {
 		return userRepository.findAll().stream()
-				.filter(user -> user.getAuthority().getRole().toString().equalsIgnoreCase(role))
+				.filter(user -> user.getAuthority().getRole()
+						.toString().equalsIgnoreCase(role))
 				.collect(Collectors.toList());
 	}
 
